@@ -1,264 +1,174 @@
-/* ═══════════════════════════════════════════
-   GEM INFOTECH — MAIN JAVASCRIPT
-   ═══════════════════════════════════════════ */
+"use strict";
 
-'use strict';
+const header = document.getElementById("site-header");
+const navLinks = document.getElementById("nav-links");
+const menuButton = document.getElementById("menu-button");
+const scrollTop = document.getElementById("scroll-top");
+const year = document.getElementById("year");
+const form = document.getElementById("contact-form");
+const submitButton = document.getElementById("submit-button");
+const successMessage = document.getElementById("form-success");
+const serviceSelect = document.getElementById("service");
+const locationSelect = document.getElementById("location");
 
-// ─── Navbar Scroll Effect ──────────────────
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 20);
-}, { passive: true });
-
-// ─── Mobile Menu ───────────────────────────
-const hamburger  = document.getElementById('hamburger');
-const navLinks   = document.getElementById('nav-links');
-const overlay    = document.getElementById('mobile-overlay');
-
-function openMenu() {
-  hamburger.classList.add('active');
-  navLinks.classList.add('open');
-  overlay.classList.add('active');
-  hamburger.setAttribute('aria-expanded', 'true');
-  document.body.style.overflow = 'hidden';
-}
-function closeMenu() {
-  hamburger.classList.remove('active');
-  navLinks.classList.remove('open');
-  overlay.classList.remove('active');
-  hamburger.setAttribute('aria-expanded', 'false');
-  document.body.style.overflow = '';
-}
-
-hamburger.addEventListener('click', () => {
-  hamburger.classList.contains('active') ? closeMenu() : openMenu();
-});
-overlay.addEventListener('click', closeMenu);
-
-// Close menu on nav link click
-document.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', closeMenu);
-});
-
-// ─── Scroll-Into-View Animations ──────────────
-const observerOptions = {
-  threshold: 0.15,
-  rootMargin: '0px 0px -40px 0px'
+const toggleHeader = () => {
+  header.classList.toggle("scrolled", window.scrollY > 12);
+  scrollTop.classList.toggle("visible", window.scrollY > 460);
 };
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('is-visible');
-      // Kick off counter animation when stats enter view
-      entry.target.querySelectorAll('[data-target]').forEach(el => {
-        animateCounter(el);
-      });
-      observer.unobserve(entry.target);
-    }
-  });
-}, observerOptions);
+window.addEventListener("scroll", toggleHeader, { passive: true });
+toggleHeader();
 
-document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
-
-// ─── Counter Animation ─────────────────────
-function animateCounter(el) {
-  const target = parseInt(el.getAttribute('data-target'), 10);
-  const duration = 1600;
-  const start = performance.now();
-
-  const step = (now) => {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    // Ease out cubic
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.floor(eased * target);
-    if (progress < 1) requestAnimationFrame(step);
-    else el.textContent = target;
-  };
-  requestAnimationFrame(step);
+if (year) {
+  year.textContent = new Date().getFullYear();
 }
 
-// Observe stats bar separately for counter
-const statsBar = document.getElementById('stats');
-const statsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+menuButton.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("open");
+  menuButton.classList.toggle("open", isOpen);
+  menuButton.setAttribute("aria-expanded", String(isOpen));
+  menuButton.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+});
+
+navLinks.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuButton.classList.remove("open");
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Open menu");
+  });
+});
+
+scrollTop.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+document.querySelectorAll(".service-card, .quick-item, .trust-item, .area-panel, .route-map").forEach((element) => {
+  element.setAttribute("data-reveal", "");
+});
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      entry.target.querySelectorAll('[data-target]').forEach(el => animateCounter(el));
-      statsObserver.unobserve(entry.target);
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.3 });
-if (statsBar) statsObserver.observe(statsBar);
+}, { threshold: 0.12, rootMargin: "0px 0px -50px 0px" });
 
-// Hero stat counters on load
-window.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    document.querySelectorAll('.hero-visual [data-target]').forEach(el => animateCounter(el));
-  }, 600);
+document.querySelectorAll("[data-reveal]").forEach((element) => revealObserver.observe(element));
+
+const sections = document.querySelectorAll("main section[id]");
+const navItems = [...navLinks.querySelectorAll("a")];
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    const activeId = entry.target.getAttribute("id");
+    navItems.forEach((item) => {
+      item.classList.toggle("active", item.getAttribute("href") === `#${activeId}`);
+    });
+  });
+}, { threshold: 0.36 });
+
+sections.forEach((section) => sectionObserver.observe(section));
+
+const serviceLinks = document.querySelectorAll("[data-service]");
+serviceLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    const service = link.getAttribute("data-service");
+    if (serviceSelect && service) {
+      serviceSelect.value = service;
+    }
+  });
 });
 
-// ─── Scroll To Top ─────────────────────────
-const scrollTopBtn = document.getElementById('scroll-top');
-window.addEventListener('scroll', () => {
-  scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
-}, { passive: true });
-scrollTopBtn.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+document.querySelectorAll("[data-location]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const location = button.getAttribute("data-location");
+    if (locationSelect && location) {
+      locationSelect.value = location;
+    }
+    document.getElementById("contact").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 });
-
-// ─── Dynamic Year ──────────────────────────
-const yearEl = document.getElementById('year');
-if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-// ─── Contact Form Validation & Submit ──────
-const form        = document.getElementById('contact-form');
-const submitBtn   = document.getElementById('submit-btn');
-const successMsg  = document.getElementById('form-success');
 
 const validators = {
-  name:     { test: v => v.trim().length >= 2, msg: 'Please enter your full name.' },
-  phone:    { test: v => /^[\d\s\(\)\-\+\.]{7,20}$/.test(v.trim()), msg: 'Please enter a valid phone number.' },
-  email:    { test: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()), msg: 'Please enter a valid email address.' },
-  service:  { test: v => v !== '', msg: 'Please select a service.' },
-  location: { test: v => v !== '', msg: 'Please select your location.' }
+  name: {
+    test: (value) => value.trim().length >= 2,
+    message: "Please enter your full name."
+  },
+  phone: {
+    test: (value) => /^[\d\s().+-]{7,20}$/.test(value.trim()),
+    message: "Please enter a valid phone number."
+  },
+  email: {
+    test: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()),
+    message: "Please enter a valid email address."
+  },
+  service: {
+    test: (value) => value !== "",
+    message: "Please select a service."
+  },
+  location: {
+    test: (value) => value !== "",
+    message: "Please select your location."
+  }
 };
 
-function setError(field, msg) {
+function setFieldError(field, message) {
   const input = document.getElementById(field);
-  const errEl = document.getElementById(`${field}-error`);
-  if (input)  input.classList.toggle('error', !!msg);
-  if (errEl)  errEl.textContent = msg || '';
+  const error = document.getElementById(`${field}-error`);
+  if (input) {
+    input.classList.toggle("error", Boolean(message));
+  }
+  if (error) {
+    error.textContent = message || "";
+  }
 }
 
 function validateField(field) {
-  const el = document.getElementById(field);
-  if (!el) return true;
-  const rule = validators[field];
-  if (rule && !rule.test(el.value)) {
-    setError(field, rule.msg);
-    return false;
-  }
-  setError(field, '');
-  return true;
+  const input = document.getElementById(field);
+  const validator = validators[field];
+  if (!input || !validator) return true;
+
+  const isValid = validator.test(input.value);
+  setFieldError(field, isValid ? "" : validator.message);
+  return isValid;
 }
 
-// Live validation on blur
-Object.keys(validators).forEach(field => {
-  const el = document.getElementById(field);
-  if (el) {
-    el.addEventListener('blur', () => validateField(field));
-    el.addEventListener('input', () => {
-      if (el.classList.contains('error')) validateField(field);
-    });
-  }
+Object.keys(validators).forEach((field) => {
+  const input = document.getElementById(field);
+  if (!input) return;
+
+  input.addEventListener("blur", () => validateField(field));
+  input.addEventListener("input", () => {
+    if (input.classList.contains("error")) {
+      validateField(field);
+    }
+  });
 });
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-  // Validate all
-  const fields = ['name', 'phone', 'email', 'service', 'location'];
-  const valid  = fields.map(f => validateField(f)).every(Boolean);
-  if (!valid) {
-    // Scroll to first error
-    const firstErr = form.querySelector('.error');
-    if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  const requiredFields = Object.keys(validators);
+  const isValid = requiredFields.map(validateField).every(Boolean);
+  if (!isValid) {
+    const firstError = form.querySelector(".error");
+    if (firstError) {
+      firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
     return;
   }
 
-  // Show loading
-  const btnText    = submitBtn.querySelector('.btn-text');
-  const btnLoading = submitBtn.querySelector('.btn-loading');
-  btnText.style.display    = 'none';
-  btnLoading.style.display = 'inline-flex';
-  submitBtn.disabled = true;
+  submitButton.disabled = true;
+  submitButton.querySelector(".submit-label").style.display = "none";
+  submitButton.querySelector(".submit-loading").style.display = "inline";
 
-  // Simulate async submission (replace with real endpoint)
-  await new Promise(r => setTimeout(r, 1800));
+  await new Promise((resolve) => setTimeout(resolve, 850));
 
-  // Success
-  submitBtn.style.display = 'none';
-  successMsg.style.display = 'flex';
   form.reset();
-
-  // In production, you'd POST to a real API:
-  // const data = new FormData(form);
-  // await fetch('/api/contact', { method: 'POST', body: JSON.stringify(Object.fromEntries(data)) });
+  submitButton.style.display = "none";
+  successMessage.style.display = "block";
 });
-
-// ─── Smooth Active Nav Highlight ───────────
-const sections = document.querySelectorAll('section[id]');
-const navItems = document.querySelectorAll('.nav-link');
-
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.getAttribute('id');
-      navItems.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-      });
-    }
-  });
-}, { threshold: 0.4 });
-
-sections.forEach(s => sectionObserver.observe(s));
-
-// Add active nav styles dynamically
-const style = document.createElement('style');
-style.textContent = `.nav-link.active { color: var(--blue-900) !important; background: var(--blue-50) !important; font-weight: 600; }`;
-document.head.appendChild(style);
-
-// ─── Service Card Hover Sparkle ───────────
-document.querySelectorAll('.service-card').forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect  = card.getBoundingClientRect();
-    const x     = ((e.clientX - rect.left) / rect.width)  * 100;
-    const y     = ((e.clientY - rect.top)  / rect.height) * 100;
-    card.style.setProperty('--mouse-x', `${x}%`);
-    card.style.setProperty('--mouse-y', `${y}%`);
-  });
-});
-
-// ─── City Card Click → Pre-fill Form ──────
-const locationSelect = document.getElementById('location');
-document.querySelectorAll('.city-card[id]').forEach(card => {
-  card.addEventListener('click', () => {
-    const map = {
-      'city-sf':           'san-francisco',
-      'city-walnut-creek': 'walnut-creek',
-      'city-lafayette':    'lafayette',
-      'city-san-ramon':    'san-ramon',
-      'city-danville':     'danville',
-      'city-other':        'other-bay-area'
-    };
-    const val = map[card.id];
-    if (val && locationSelect) {
-      locationSelect.value = val;
-      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-    }
-  });
-});
-
-// ─── Service Card Click → Pre-fill Form ───
-const serviceSelect = document.getElementById('service');
-document.querySelectorAll('.sc-link[id]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    if (!link.href.startsWith('tel:')) {
-      const map = {
-        'service-link-computer-repair': 'computer-repair',
-        'service-link-os-install':      'os-installation',
-        'service-link-virus':           'virus-removal',
-        'service-link-wifi':            'wifi-setup',
-        'service-link-printer':         'printer-setup',
-        'service-link-office':          'office-setup',
-        'service-link-smart-hands':     'smart-hands'
-      };
-      const val = map[link.id];
-      if (val && serviceSelect) serviceSelect.value = val;
-    }
-  });
-});
-
-console.log('%c🔷 Gem Infotech', 'color:#1e3a8a;font-size:1.5rem;font-weight:800;');
-console.log('%cBay Area Tech Services — ahmed@thegeminfo.com', 'color:#64748b;font-size:0.9rem;');
