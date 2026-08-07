@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gem Infotech | Bay Area's Trusted Tech Experts</title>
+  <meta name="description" content="Gem Infotech provides fast, reliable, and affordable tech support across the Bay Area. Computer repair, virus removal, WiFi setup, smart office solutions & more — 7 days a week." />
+  <meta name="keywords" content="computer repair bay area, IT support san francisco, virus removal, wifi setup, tech support walnut creek, IT services danville, lafayette tech support" />
+  <meta property="og:title" content="Gem Infotech | Bay Area's Trusted Tech Experts" />
+  <meta property="og:description" content="Fast, reliable, and local tech support across the Bay Area. 7 days a week." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="logo" id="logo-link">
+        <span class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="8" fill="#1e3a8a"/>
+            <path d="M8 12h16M8 16h10M8 20h13" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="23" cy="20" r="3" fill="#f97316"/>
+          </svg>
+        </span>
+        <span class="logo-text">Gem <strong>Infotech</strong></span>
+      </a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#areas" class="nav-link">Service Areas</a>
+        <a href="#why-us" class="nav-link">Why Us</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="tel:+16699002400" class="nav-cta" id="nav-call-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          +1 669.900.2400
+        </a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay -->
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="container hero-inner">
+      <div class="hero-content" data-animate="fade-up">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Bay Area's #1 Local Tech Service
+        </div>
+        <h1 class="hero-headline">
+          Fast. Reliable.<br />
+          <span class="headline-accent">Local Tech Support.</span>
+        </h1>
+        <p class="hero-subtext">
+          Expert tech solutions for homes & small businesses across the Bay Area.
+          From computer repair to smart office setup — we're there when you need us most.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary" id="hero-get-quote-btn">
+            Get a Free Quote
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="tel:+16699002400" class="btn btn-outline" id="hero-call-now-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Call Now
+          </a>
+        </div>
+        <div class="hero-meta">
+          <div class="meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#10b981" stroke="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Serving 5+ Bay Area Cities
+          </div>
+          <div class="meta-divider"></div>
+          <div class="meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#10b981" stroke="none"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 15H11V11h2v6zm0-8H11V7h2v2z"/></svg>
+            7 Days a Week · 24/7 Emergency
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual" data-animate="fade-left">
+        <div class="visual-card main-card">
+          <div class="card-header-strip"></div>
+          <div class="card-body">
+            <div class="stat-row">
+              <div class="stat-item">
+                <span class="stat-num" data-target="500">0</span><span class="stat-plus">+</span>
+                <span class="stat-label">Happy Clients</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num" data-target="98">0</span><span class="stat-plus">%</span>
+                <span class="stat-label">Satisfaction</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num" data-target="8">0</span><span class="stat-plus"></span>
+                <span class="stat-label">Services</span>
+              </div>
+            </div>
+            <div class="service-pills">
+              <span class="pill">💻 Computer Repair</span>
+              <span class="pill">🛡️ Virus Removal</span>
+              <span class="pill">📶 WiFi Setup</span>
+              <span class="pill">🖨️ Printer Setup</span>
+              <span class="pill">🏢 Office Setup</span>
+              <span class="pill">🚨 Emergency</span>
+            </div>
+          </div>
+        </div>
+        <div class="visual-card floating-card card-hours">
+          <div class="fc-icon">🕐</div>
+          <div class="fc-text">
+            <strong>Open 7 Days</strong>
+            <span>8AM – 8PM · Emergency 24/7</span>
+          </div>
+        </div>
+        <div class="visual-card floating-card card-response">
+          <div class="fc-icon">⚡</div>
+          <div class="fc-text">
+            <strong>Same-Day Service</strong>
+            <span>Fast response guaranteed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       TRUST BADGES
+  ═══════════════════════════════════════════ -->
+  <section class="trust-strip" id="trust">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item" data-animate="fade-up">
+          <div class="trust-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="trust-text">
+            <strong>Same-Day Service</strong>
+            <span>Fast response, quick resolution</span>
+          </div>
+        </div>
+        <div class="trust-item" data-animate="fade-up" style="animation-delay:0.1s">
+          <div class="trust-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="trust-text">
+            <strong>Fully Insured</strong>
+            <span>Licensed & professionally covered</span>
+          </div>
+        </div>
+        <div class="trust-item" data-animate="fade-up" style="animation-delay:0.2s">
+          <div class="trust-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="trust-text">
+            <strong>Satisfaction Guaranteed</strong>
+            <span>We make it right — every time</span>
+          </div>
+        </div>
+        <div class="trust-item" data-animate="fade-up" style="animation-delay:0.3s">
+          <div class="trust-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div class="trust-text">
+            <strong>Flexible Scheduling</strong>
+            <span>7 days, evenings & weekends</span>
+          </div>
+        </div>
+        <div class="trust-item" data-animate="fade-up" style="animation-delay:0.4s">
+          <div class="trust-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <div class="trust-text">
+            <strong>Transparent Pricing</strong>
+            <span>No hidden fees, ever</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SERVICES
+  ═══════════════════════════════════════════ -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <div class="section-tag">What We Do</div>
+        <h2 class="section-title">Expert Tech Services</h2>
+        <p class="section-sub">Comprehensive tech support for every challenge — residential and small business.</p>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card" data-animate="fade-up" style="animation-delay:0s">
+          <div class="sc-accent"></div>
+          <div class="sc-icon" style="background:#eff6ff">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3 class="sc-title">Computer Repair</h3>
+          <p class="sc-desc">Hardware diagnostics, component replacement, data recovery, performance optimization, and screen repairs for laptops & desktops.</p>
+          <a href="#contact" class="sc-link" id="service-link-computer-repair">Book Service <span>→</span></a>
+        </div>
+
+        <div class="service-card" data-animate="fade-up" style="animation-delay:0.07s">
+          <div class="sc-accent"></div>
+          <div class="sc-icon" style="background:#fff7ed">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="1.8"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>
+          </div>
+          <h3 class="sc-title">OS Installation</h3>
+          <p class="sc-desc">Clean Windows & macOS installs, upgrades to latest versions, driver setup, and full system configuration to get you up and running fast.</p>
+          <a href="#contact" class="sc-link" id="service-link-os-install">Book Service <span>→</span></a>
+        </div>
+
+        <div class="service-card" data-animate="fade-up" style="animation-delay:0.14s">
+          <div class="sc-accent"></div>
+          <div class="sc-icon" style="background:#fef2f2">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="sc-title">Virus & Malware Removal</h3>
+          <p class="sc-desc">Deep system scans, complete malware eradication, ransomware recovery, antivirus installation, and security hardening to keep you protected.</p>
+          <a href="#contact" class="sc-link" id="service-link-virus">Book Service <span>→</span></a>
+        </div>
+
+        <div class="service-card" data-animate="fade-up" style="animation-delay:0.21s">
+          <div class="sc-accent"></div>
+          <div class="sc-icon" style="background:#f0fdf4">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.8"><path d="M1.42 9a16 16 0 0121.16 0M5 12.55a11 11 0 0114.08 0M10.54 16.1a6 6 0 012.92 0"/><circle cx="12" cy="20" r="1" fill="#16a34a"/></svg>
+          </div>
+          <h3 class="sc-title">WiFi Setup & Troubleshooting</h3>
+          <p class="sc-desc">Router installation, mesh network setup, dead-zone elimination, network security configuration, and speed optimization for fast, reliable coverage.</p>
+          <a href="#contact" class="sc-link" id="service-link-wifi">Book Service <span>→</span></a>
+        </div>
+
+        <div class="service-card" data-animate="fade-up" style="animation-delay:0.28s">
+          <div class="sc-accent"></div>
+          <div class="sc-icon" style="background:#faf5ff">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="1.8"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          </div>
+          <h3 class="sc-title">Printer Setup</h3>
+          <p class="sc-desc">Wired & wireless printer installation, driver troubleshooting, network sharing configuration, and scan-to-email setup for home and office printers.</p>
+          <a href="#contact" class="sc-link" id="service-link-printer">Book Service <span>→</span></a>
+        </div>
+
+        <div class="service-card" data-animate="fade-up" style="animation-delay:0.35s">
+          <div class="sc-accent"></div>
+          <div class="sc-icon" style="background:#fff7ed">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3 class="sc-title">Small Office Setup</h3>
+          <p class="sc-desc">End-to-end office tech deployment — networking, workstations, printers, VoIP phones, file sharing, security cameras, and cloud collaboration tools.</p>
+          <a href="#contact" class="sc-link" id="service-link-office">Book Service <span>→</span></a>
+        </div>
+
+        <div class="service-card" data-animate="fade-up" style="animation-delay:0.42s">
+          <div class="sc-accent"></div>
+          <div class="sc-icon" style="background:#ecfeff">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3 class="sc-title">Smart Hands Support</h3>
+          <p class="sc-desc">On-site tech assistance for remote IT teams — racking equipment, cable management, device staging, and hands-on support for businesses without local IT staff.</p>
+          <a href="#contact" class="sc-link" id="service-link-smart-hands">Book Service <span>→</span></a>
+        </div>
+
+        <div class="service-card service-card--emergency" data-animate="fade-up" style="animation-delay:0.49s">
+          <div class="sc-accent sc-accent--emergency"></div>
+          <div class="sc-icon" style="background:#fff1f2">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3 class="sc-title">Emergency Support</h3>
+          <p class="sc-desc">Critical system failures, data loss crises, ransomware attacks — we offer priority 24/7 emergency response to get you back online as fast as possible.</p>
+          <div class="emergency-badge">24/7 Available</div>
+          <a href="tel:+16699002400" class="sc-link sc-link--emergency" id="service-link-emergency">Call Now: +1 669.900.2400 <span>→</span></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SERVICE AREAS
+  ═══════════════════════════════════════════ -->
+  <section class="areas" id="areas">
+    <div class="container">
+      <div class="areas-inner">
+        <div class="areas-content" data-animate="fade-right">
+          <div class="section-tag">Where We Serve</div>
+          <h2 class="section-title">Bay Area Service Areas</h2>
+          <p class="section-sub">We provide on-site tech support across the Bay Area. Can't find your city? Just ask — we cover more ground than you think!</p>
+
+          <div class="city-grid">
+            <div class="city-card" id="city-sf">
+              <div class="city-icon">🌉</div>
+              <div class="city-info">
+                <strong>San Francisco</strong>
+                <span>All neighborhoods</span>
+              </div>
+            </div>
+            <div class="city-card" id="city-walnut-creek">
+              <div class="city-icon">🌳</div>
+              <div class="city-info">
+                <strong>Walnut Creek</strong>
+                <span>Contra Costa County</span>
+              </div>
+            </div>
+            <div class="city-card" id="city-lafayette">
+              <div class="city-icon">🏘️</div>
+              <div class="city-info">
+                <strong>Lafayette</strong>
+                <span>Contra Costa County</span>
+              </div>
+            </div>
+            <div class="city-card" id="city-san-ramon">
+              <div class="city-icon">🏙️</div>
+              <div class="city-info">
+                <strong>San Ramon</strong>
+                <span>Tri-Valley Area</span>
+              </div>
+            </div>
+            <div class="city-card" id="city-danville">
+              <div class="city-icon">🌄</div>
+              <div class="city-info">
+                <strong>Danville</strong>
+                <span>San Ramon Valley</span>
+              </div>
+            </div>
+            <div class="city-card city-card--more" id="city-other">
+              <div class="city-icon">📍</div>
+              <div class="city-info">
+                <strong>Other Bay Area?</strong>
+                <span>Contact us — we likely cover it!</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn btn-primary" id="areas-contact-btn" style="margin-top:1.5rem; display:inline-flex;">
+            Check My Area
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="areas-map" data-animate="fade-left">
+          <div class="map-card">
+            <div class="map-visual">
+              <!-- Stylized Bay Area Map SVG -->
+              <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg" class="bay-map-svg">
+                <defs>
+                  <radialGradient id="mapGrad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#dbeafe"/>
+                    <stop offset="100%" stop-color="#bfdbfe"/>
+                  </radialGradient>
+                  <filter id="glow">
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <!-- Bay water -->
+                <ellipse cx="170" cy="220" rx="90" ry="140" fill="#bfdbfe" opacity="0.7"/>
+                <!-- Land masses (stylized) -->
+                <path d="M30 80 Q60 40 120 60 L150 120 Q130 160 110 200 L80 280 Q50 300 30 260 Z" fill="#eff6ff" stroke="#1e3a8a" stroke-width="1.5" opacity="0.8"/>
+                <path d="M220 50 Q280 30 340 60 L370 150 Q360 230 330 300 L280 380 Q240 420 200 400 L180 340 Q190 280 210 220 L220 150 Z" fill="#eff6ff" stroke="#1e3a8a" stroke-width="1.5" opacity="0.8"/>
+                <path d="M120 300 Q150 280 200 290 L210 360 Q180 400 150 410 L110 390 Q90 360 120 300Z" fill="#eff6ff" stroke="#1e3a8a" stroke-width="1.5" opacity="0.8"/>
+
+                <!-- City markers -->
+                <!-- San Francisco -->
+                <circle cx="82" cy="180" r="10" fill="#1e3a8a" filter="url(#glow)"/>
+                <circle cx="82" cy="180" r="5" fill="white"/>
+                <text x="42" y="165" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#1e3a8a">San Francisco</text>
+
+                <!-- Walnut Creek -->
+                <circle cx="290" cy="190" r="10" fill="#f97316" filter="url(#glow)"/>
+                <circle cx="290" cy="190" r="5" fill="white"/>
+                <text x="250" y="175" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#f97316">Walnut Creek</text>
+
+                <!-- Lafayette -->
+                <circle cx="260" cy="230" r="10" fill="#1e3a8a" filter="url(#glow)"/>
+                <circle cx="260" cy="230" r="5" fill="white"/>
+                <text x="270" y="225" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#1e3a8a">Lafayette</text>
+
+                <!-- San Ramon -->
+                <circle cx="300" cy="310" r="10" fill="#f97316" filter="url(#glow)"/>
+                <circle cx="300" cy="310" r="5" fill="white"/>
+                <text x="258" y="330" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#f97316">San Ramon</text>
+
+                <!-- Danville -->
+                <circle cx="280" cy="360" r="10" fill="#1e3a8a" filter="url(#glow)"/>
+                <circle cx="280" cy="360" r="5" fill="white"/>
+                <text x="240" y="380" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#1e3a8a">Danville</text>
+
+                <!-- Coverage radius circles (pulsing) -->
+                <circle cx="82" cy="180" r="22" fill="none" stroke="#1e3a8a" stroke-width="1" opacity="0.3" class="pulse-ring"/>
+                <circle cx="290" cy="190" r="22" fill="none" stroke="#f97316" stroke-width="1" opacity="0.3" class="pulse-ring" style="animation-delay:0.5s"/>
+                <circle cx="300" cy="310" r="22" fill="none" stroke="#f97316" stroke-width="1" opacity="0.3" class="pulse-ring" style="animation-delay:1s"/>
+              </svg>
+            </div>
+            <div class="map-footer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#f97316" stroke="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+              We come to <strong>you</strong> — on-site visits across the Bay Area
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       WHY CHOOSE US
+  ═══════════════════════════════════════════ -->
+  <section class="why-us" id="why-us">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <div class="section-tag section-tag--light">Why Gem Infotech</div>
+        <h2 class="section-title section-title--light">The Gem Difference</h2>
+        <p class="section-sub section-sub--light">We're not just tech experts — we're your neighbors. Here's why Bay Area residents choose us.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card" data-animate="fade-up" style="animation-delay:0s">
+          <div class="why-num">01</div>
+          <div class="why-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Lightning Fast Response</h3>
+          <p>Most issues resolved same day. We understand downtime costs money and causes stress — so we move fast.</p>
+        </div>
+        <div class="why-card" data-animate="fade-up" style="animation-delay:0.1s">
+          <div class="why-num">02</div>
+          <div class="why-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <h3>Transparent Pricing</h3>
+          <p>No surprise bills. We quote upfront, explain everything in plain English, and only charge what we agreed.</p>
+        </div>
+        <div class="why-card" data-animate="fade-up" style="animation-delay:0.2s">
+          <div class="why-num">03</div>
+          <div class="why-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>100% Satisfaction Guaranteed</h3>
+          <p>We don't leave until the problem is solved. If you're not satisfied, we'll make it right — no questions asked.</p>
+        </div>
+        <div class="why-card" data-animate="fade-up" style="animation-delay:0.3s">
+          <div class="why-num">04</div>
+          <div class="why-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3>Local & Trustworthy</h3>
+          <p>We live and work in the Bay Area. Background-checked, fully insured, and trusted by hundreds of local families and businesses.</p>
+        </div>
+        <div class="why-card" data-animate="fade-up" style="animation-delay:0.4s">
+          <div class="why-num">05</div>
+          <div class="why-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>All Devices & Brands</h3>
+          <p>Windows, Mac, Linux, iOS, Android — we support them all. No brand bias, no unnecessary upsells.</p>
+        </div>
+        <div class="why-card" data-animate="fade-up" style="animation-delay:0.5s">
+          <div class="why-num">06</div>
+          <div class="why-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3>Emergency 24/7</h3>
+          <p>Critical failure at midnight? We pick up. Emergency tech support available around the clock for urgent situations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       STATS BAR
+  ═══════════════════════════════════════════ -->
+  <section class="stats-bar" id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-block" data-animate="fade-up">
+          <span class="sn" data-target="500">0</span><span class="sp">+</span>
+          <span class="sl">Happy Clients</span>
+        </div>
+        <div class="stat-block" data-animate="fade-up" style="animation-delay:0.1s">
+          <span class="sn" data-target="98">0</span><span class="sp">%</span>
+          <span class="sl">Satisfaction Rate</span>
+        </div>
+        <div class="stat-block" data-animate="fade-up" style="animation-delay:0.2s">
+          <span class="sn" data-target="7">0</span><span class="sp"></span>
+          <span class="sl">Days a Week</span>
+        </div>
+        <div class="stat-block" data-animate="fade-up" style="animation-delay:0.3s">
+          <span class="sn" data-target="24">0</span><span class="sp">/7</span>
+          <span class="sl">Emergency Support</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CONTACT FORM
+  ═══════════════════════════════════════════ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="contact-info" data-animate="fade-right">
+          <div class="section-tag">Get in Touch</div>
+          <h2 class="section-title">Book Your Service Today</h2>
+          <p class="section-sub">Fill out the form and we'll get back to you within the hour. Prefer to talk? Call or email us directly.</p>
+
+          <div class="contact-details">
+            <a href="tel:+16699002400" class="contact-detail-item" id="contact-phone-link">
+              <div class="cd-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div class="cd-text">
+                <strong>Call or Text</strong>
+                <span>+1 669.900.2400</span>
+              </div>
+            </a>
+            <a href="mailto:ahmed@thegeminfo.com" class="contact-detail-item" id="contact-email-link">
+              <div class="cd-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="cd-text">
+                <strong>Email Us</strong>
+                <span>ahmed@thegeminfo.com</span>
+              </div>
+            </a>
+            <div class="contact-detail-item">
+              <div class="cd-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="cd-text">
+                <strong>Business Hours</strong>
+                <span>Mon–Sun: 8AM–8PM · Emergency: 24/7</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap" data-animate="fade-left">
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name <span class="req">*</span></label>
+                <input type="text" id="name" name="name" placeholder="John Smith" required autocomplete="name" />
+                <span class="field-error" id="name-error"></span>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number <span class="req">*</span></label>
+                <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" required autocomplete="tel" />
+                <span class="field-error" id="phone-error"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address <span class="req">*</span></label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required autocomplete="email" />
+              <span class="field-error" id="email-error"></span>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="service">Service Needed <span class="req">*</span></label>
+                <select id="service" name="service" required>
+                  <option value="">— Select a service —</option>
+                  <option value="computer-repair">Computer Repair</option>
+                  <option value="os-installation">OS Installation</option>
+                  <option value="virus-removal">Virus & Malware Removal</option>
+                  <option value="wifi-setup">WiFi Setup & Troubleshooting</option>
+                  <option value="printer-setup">Printer Setup</option>
+                  <option value="office-setup">Small Office Setup</option>
+                  <option value="smart-hands">Smart Hands Support</option>
+                  <option value="emergency">Emergency Support</option>
+                  <option value="other">Other / Not Sure</option>
+                </select>
+                <span class="field-error" id="service-error"></span>
+              </div>
+              <div class="form-group">
+                <label for="location">Your Location <span class="req">*</span></label>
+                <select id="location" name="location" required>
+                  <option value="">— Select your city —</option>
+                  <option value="san-francisco">San Francisco</option>
+                  <option value="walnut-creek">Walnut Creek</option>
+                  <option value="lafayette">Lafayette</option>
+                  <option value="san-ramon">San Ramon</option>
+                  <option value="danville">Danville</option>
+                  <option value="other-bay-area">Other Bay Area Location</option>
+                </select>
+                <span class="field-error" id="location-error"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Describe Your Issue</label>
+              <textarea id="message" name="message" placeholder="Tell us what's going on — the more detail, the better we can help..." rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
+              <span class="btn-text">Send My Request</span>
+              <span class="btn-loading" style="display:none;">
+                <svg class="spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg>
+                Sending...
+              </span>
+            </button>
+            <div class="form-success" id="form-success" style="display:none;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div>
+                <strong>Request sent!</strong>
+                <span>We'll reach out within the hour. Check your email for confirmation.</span>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo logo--light">
+            <span class="logo-icon">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#f97316"/><path d="M8 12h16M8 16h10M8 20h13" stroke="white" stroke-width="2.5" stroke-linecap="round"/><circle cx="23" cy="20" r="3" fill="white"/></svg>
+            </span>
+            <span class="logo-text">Gem <strong>Infotech</strong></span>
+          </a>
+          <p class="footer-tagline">Bay Area's trusted local tech experts. Fast, honest, and always on time.</p>
+          <div class="footer-contact-quick">
+            <a href="tel:+16699002400" id="footer-phone">📞 +1 669.900.2400</a>
+            <a href="mailto:ahmed@thegeminfo.com" id="footer-email">✉️ ahmed@thegeminfo.com</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Computer Repair</a></li>
+            <li><a href="#services">OS Installation</a></li>
+            <li><a href="#services">Virus Removal</a></li>
+            <li><a href="#services">WiFi Setup</a></li>
+            <li><a href="#services">Printer Setup</a></li>
+            <li><a href="#services">Office Setup</a></li>
+            <li><a href="#services">Smart Hands</a></li>
+            <li><a href="#services">Emergency Support</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Service Areas</h4>
+          <ul>
+            <li><a href="#areas">San Francisco</a></li>
+            <li><a href="#areas">Walnut Creek</a></li>
+            <li><a href="#areas">Lafayette</a></li>
+            <li><a href="#areas">San Ramon</a></li>
+            <li><a href="#areas">Danville</a></li>
+            <li><a href="#areas">Other Bay Area</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Business Hours</h4>
+          <div class="hours-list">
+            <div class="hour-row">
+              <span>Monday – Sunday</span>
+              <span class="open">8AM – 8PM</span>
+            </div>
+            <div class="hour-row">
+              <span>Emergency Support</span>
+              <span class="open">24 / 7</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn btn-outline-sm" id="footer-book-btn">Book a Visit →</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Gem Infotech. All rights reserved.</p>
+        <p>Proudly serving the San Francisco Bay Area</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
