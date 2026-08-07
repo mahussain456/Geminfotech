@@ -101,10 +101,18 @@ svg {
   gap: 10px;
   font-weight: 700;
   color: var(--ink);
+  min-width: 0;
 }
 
 .brand strong {
   color: var(--teal-dark);
+}
+
+.brand-logo {
+  display: block;
+  width: auto;
+  height: 42px;
+  object-fit: contain;
 }
 
 .brand-mark {
@@ -149,6 +157,7 @@ svg {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .phone-link {
@@ -874,6 +883,10 @@ select.error {
   color: #a7f3d0;
 }
 
+.footer-logo {
+  height: 46px;
+}
+
 .site-footer p,
 .footer-contact span {
   color: rgba(255, 255, 255, 0.66);
@@ -966,6 +979,7 @@ select.error {
 
   .nav-shell {
     min-height: 68px;
+    gap: 12px;
   }
 
   .nav-links {
@@ -991,14 +1005,13 @@ select.error {
     padding: 13px 14px;
   }
 
-  .phone-link span {
+  .phone-link {
     display: none;
   }
 
-  .phone-link {
-    width: 42px;
-    padding: 0;
-    justify-content: center;
+  .brand-logo {
+    height: 31px;
+    max-width: 148px;
   }
 
   .menu-button {
@@ -1084,6 +1097,13 @@ select.error {
 }
 
 @media (max-width: 430px) {
+  .menu-button {
+    position: fixed;
+    top: 13px;
+    right: 18px;
+    z-index: 31;
+  }
+
   .hero h1 {
     max-width: 316px;
     font-size: 2.12rem;
