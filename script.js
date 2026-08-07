@@ -137,38 +137,40 @@ function validateField(field) {
   return isValid;
 }
 
-Object.keys(validators).forEach((field) => {
-  const input = document.getElementById(field);
-  if (!input) return;
+if (form) {
+  Object.keys(validators).forEach((field) => {
+    const input = document.getElementById(field);
+    if (!input) return;
 
-  input.addEventListener("blur", () => validateField(field));
-  input.addEventListener("input", () => {
-    if (input.classList.contains("error")) {
-      validateField(field);
-    }
+    input.addEventListener("blur", () => validateField(field));
+    input.addEventListener("input", () => {
+      if (input.classList.contains("error")) {
+        validateField(field);
+      }
+    });
   });
-});
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-  const requiredFields = Object.keys(validators);
-  const isValid = requiredFields.map(validateField).every(Boolean);
-  if (!isValid) {
-    const firstError = form.querySelector(".error");
-    if (firstError) {
-      firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+    const requiredFields = Object.keys(validators);
+    const isValid = requiredFields.map(validateField).every(Boolean);
+    if (!isValid) {
+      const firstError = form.querySelector(".error");
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      return;
     }
-    return;
-  }
 
-  submitButton.disabled = true;
-  submitButton.querySelector(".submit-label").style.display = "none";
-  submitButton.querySelector(".submit-loading").style.display = "inline";
+    submitButton.disabled = true;
+    submitButton.querySelector(".submit-label").style.display = "none";
+    submitButton.querySelector(".submit-loading").style.display = "inline";
 
-  await new Promise((resolve) => setTimeout(resolve, 850));
+    await new Promise((resolve) => setTimeout(resolve, 850));
 
-  form.reset();
-  submitButton.style.display = "none";
-  successMessage.style.display = "block";
-});
+    form.reset();
+    submitButton.style.display = "none";
+    successMessage.style.display = "block";
+  });
+}

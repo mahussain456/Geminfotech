@@ -780,6 +780,18 @@ svg {
   box-shadow: var(--shadow);
 }
 
+.tally-booking {
+  min-height: 760px;
+  overflow: hidden;
+}
+
+.tally-booking iframe {
+  display: block;
+  width: 100%;
+  min-height: 760px;
+  border: 0;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1073,6 +1085,11 @@ select.error {
   .area-panel,
   .contact-form {
     padding: 22px;
+  }
+
+  .tally-booking,
+  .tally-booking iframe {
+    min-height: 820px;
   }
 
   .route-map {
