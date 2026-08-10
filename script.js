@@ -43,7 +43,7 @@ scrollTop.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-document.querySelectorAll(".service-card, .quick-item, .trust-item, .area-panel, .route-map").forEach((element) => {
+document.querySelectorAll(".service-card, .quick-item, .trust-item, .area-panel, .route-map, .faq-grid article").forEach((element) => {
   element.setAttribute("data-reveal", "");
 });
 

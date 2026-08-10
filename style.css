@@ -834,6 +834,36 @@ svg {
   margin-top: 3px;
 }
 
+.faq {
+  background: linear-gradient(180deg, var(--paper), var(--mist));
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.faq-grid article {
+  min-height: 214px;
+  padding: 26px;
+  border: 1px solid rgba(5, 59, 47, 0.12);
+  border-radius: var(--radius);
+  background: var(--paper);
+  box-shadow: 0 14px 34px rgba(23, 32, 27, 0.08);
+}
+
+.faq-grid h3 {
+  font-size: 1.22rem;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.faq-grid p {
+  margin-top: 12px;
+  color: var(--muted);
+}
+
 .contact {
   background: var(--paper);
 }
@@ -1190,6 +1220,7 @@ select.error {
 
   .quick-grid,
   .service-grid,
+  .faq-grid,
   .trust-list,
   .form-grid,
   .footer-layout {
