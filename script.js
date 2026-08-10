@@ -83,9 +83,32 @@ serviceLinks.forEach((link) => {
   });
 });
 
-document.querySelectorAll("[data-location]").forEach((button) => {
+const mapPins = document.querySelectorAll("[data-map-pin]");
+const locationButtons = document.querySelectorAll("[data-location]");
+
+function setActiveMapLocation(location) {
+  if (!location) return;
+
+  mapPins.forEach((pin) => {
+    pin.classList.toggle("is-active", pin.getAttribute("data-map-pin") === location);
+  });
+
+  locationButtons.forEach((button) => {
+    button.classList.toggle("is-active", button.getAttribute("data-map-location") === location);
+  });
+}
+
+setActiveMapLocation("oakley");
+
+locationButtons.forEach((button) => {
+  const mapLocation = button.getAttribute("data-map-location");
+
+  button.addEventListener("mouseenter", () => setActiveMapLocation(mapLocation));
+  button.addEventListener("focus", () => setActiveMapLocation(mapLocation));
+
   button.addEventListener("click", () => {
     const location = button.getAttribute("data-location");
+    setActiveMapLocation(mapLocation);
     if (locationSelect && location) {
       locationSelect.value = location;
     }
