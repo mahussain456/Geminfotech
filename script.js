@@ -1,264 +1,128 @@
-/* ═══════════════════════════════════════════
-   GEM INFOTECH — MAIN JAVASCRIPT
-   ═══════════════════════════════════════════ */
-
 'use strict';
-
-// ─── Navbar Scroll Effect ──────────────────
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 20);
-}, { passive: true });
-
-// ─── Mobile Menu ───────────────────────────
-const hamburger  = document.getElementById('hamburger');
-const navLinks   = document.getElementById('nav-links');
-const overlay    = document.getElementById('mobile-overlay');
-
-function openMenu() {
-  hamburger.classList.add('active');
-  navLinks.classList.add('open');
-  overlay.classList.add('active');
-  hamburger.setAttribute('aria-expanded', 'true');
-  document.body.style.overflow = 'hidden';
-}
+document.documentElement.classList.add('js');
+const menuButton = document.querySelector('.menu-toggle');
+const navigation = document.querySelector('#navigation');
 function closeMenu() {
-  hamburger.classList.remove('active');
-  navLinks.classList.remove('open');
-  overlay.classList.remove('active');
-  hamburger.setAttribute('aria-expanded', 'false');
-  document.body.style.overflow = '';
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.querySelector('.menu-label').textContent = 'Menu';
+  navigation.classList.remove('is-open');
 }
-
-hamburger.addEventListener('click', () => {
-  hamburger.classList.contains('active') ? closeMenu() : openMenu();
+menuButton.addEventListener('click', () => {
+  const open = menuButton.getAttribute('aria-expanded') !== 'true';
+  menuButton.setAttribute('aria-expanded', String(open));
+  menuButton.querySelector('.menu-label').textContent = open ? 'Close' : 'Menu';
+  navigation.classList.toggle('is-open', open);
 });
-overlay.addEventListener('click', closeMenu);
-
-// Close menu on nav link click
-document.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', closeMenu);
+navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+    closeMenu(); menuButton.focus();
+  }
 });
-
-// ─── Scroll-Into-View Animations ──────────────
-const observerOptions = {
-  threshold: 0.15,
-  rootMargin: '0px 0px -40px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('is-visible');
-      // Kick off counter animation when stats enter view
-      entry.target.querySelectorAll('[data-target]').forEach(el => {
-        animateCounter(el);
-      });
-      observer.unobserve(entry.target);
-    }
+document.addEventListener('click', event => {
+  if (!event.target.closest('.site-header')) closeMenu();
+});
+matchMedia('(min-width: 721px)').addEventListener('change', closeMenu);
+const filterButtons = document.querySelectorAll('[data-filter]');
+const serviceItems = document.querySelectorAll('.service-item');
+function filterServices(filter) {
+  filterButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === filter)));
+  let count = 0;
+  serviceItems.forEach(item => {
+    item.hidden = filter !== 'all' && !item.dataset.for.split(' ').includes(filter);
+    if (!item.hidden) count++;
   });
-}, observerOptions);
+  document.querySelector('#filter-status').textContent = `${count} services shown${filter === 'all' ? '' : ` for ${filter}`}.`;
+}
+filterButtons.forEach(button => button.addEventListener('click', () => filterServices(button.dataset.filter)));
+document.querySelectorAll('[data-audience]').forEach(link => link.addEventListener('click', () => filterServices(link.dataset.audience)));
+const form = document.querySelector('#contact-form');
+if (form) {
+const result = document.querySelector('#form-result');
+const fields = ['name', 'phone', 'email', 'service', 'location'];
+function validateField(id) {
+  const input = document.getElementById(id);
+  const value = input.value.trim();
+  let error = '';
+  if (!value) error = ({name:'Enter your name.', phone:'Enter your phone number.', email:'Enter your email address.', service:'Choose a service, or select “Other / I’m not sure”.', location:'Choose your city, or select “Other Bay Area location”.'})[id];
+  else if (id === 'phone' && (!/^[+\d\s().-]+$/.test(value) || value.replace(/\D/g, '').length < 7 || value.replace(/\D/g, '').length > 15)) error = 'Enter a valid phone number with 7–15 digits.';
+  else if (id === 'email' && !input.validity.valid) error = 'Enter an email address, such as you@example.com.';
+  input.setAttribute('aria-invalid', String(Boolean(error)));
+  document.getElementById(`${id}-error`).textContent = error;
+  return !error;
+}
+fields.forEach(id => {
+  const input = document.getElementById(id);
+  input.addEventListener('blur', () => validateField(id));
+  input.addEventListener('input', () => {
+    if (input.getAttribute('aria-invalid') === 'true') validateField(id);
+  });
+});
+function prefill(id, value) {
+  document.getElementById(id).value = value;
+  document.getElementById(id).setAttribute('aria-invalid', 'false');
+  document.getElementById(`${id}-error`).textContent = '';
+  result.hidden = true;
+}
+document.querySelectorAll('[data-service]').forEach(link => link.addEventListener('click', () => prefill('service', link.dataset.service)));
+document.querySelectorAll('[data-city]').forEach(link => link.addEventListener('click', () => prefill('location', link.dataset.city)));
+form.addEventListener('input', () => { result.hidden = true; });
+form.addEventListener('change', () => { result.hidden = true; });
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  const validity = fields.map(validateField);
+  if (validity.includes(false)) { document.getElementById(fields[validity.indexOf(false)]).focus(); return; }
+  const service = document.getElementById('service').selectedOptions[0].text;
+  const city = document.getElementById('location').selectedOptions[0].text;
+  const request = `Hello Gem Infotech,\n\nI would like a quote for ${service}.\n\nName: ${form.elements.name.value.trim()}\nPhone: ${form.elements.phone.value.trim()}\nEmail: ${form.elements.email.value.trim()}\nCity: ${city}\n\nIssue: ${form.elements.message.value.trim() || 'Please contact me to discuss.'}\n\nThank you!`;
+  document.getElementById('request-text').value = request;
+  document.getElementById('request-text').hidden = true;
+  document.getElementById('copy-status').textContent = '';
+  document.getElementById('email-draft').href = `mailto:ahmed@thegeminfo.com?subject=${encodeURIComponent(`Quote request: ${service}`)}&body=${encodeURIComponent(request)}`;
+  result.hidden = false;
+});
+document.getElementById('copy-request').addEventListener('click', async () => {
+  const requestText = document.getElementById('request-text');
+  try {
+    await navigator.clipboard.writeText(requestText.value);
+    document.getElementById('copy-status').textContent = 'Copied. Paste it into an email to ahmed@thegeminfo.com.';
+  } catch {
+    requestText.hidden = false;
+    requestText.focus(); requestText.select();
+    document.getElementById('copy-status').textContent = 'Copy the selected text below and email it to ahmed@thegeminfo.com.';
+  }
+});
+}
+document.getElementById('year').textContent = new Date().getFullYear();
 
-document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
-
-// ─── Counter Animation ─────────────────────
-function animateCounter(el) {
-  const target = parseInt(el.getAttribute('data-target'), 10);
-  const duration = 1600;
-  const start = performance.now();
-
-  const step = (now) => {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    // Ease out cubic
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.floor(eased * target);
-    if (progress < 1) requestAnimationFrame(step);
-    else el.textContent = target;
+// The hero keeps its content still; only the connection cues and photo drift move.
+const scene = document.querySelector('.connected-scene');
+if (scene) {
+  const motionButton = scene.querySelector('.motion-toggle');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  let userPaused = false;
+  let inView = true;
+  const syncMotion = () => {
+    scene.classList.toggle('is-paused', userPaused || !inView || document.hidden || reducedMotion.matches);
+    motionButton.setAttribute('aria-pressed', String(userPaused));
+    motionButton.setAttribute('aria-label', userPaused ? 'Play hero animation' : 'Pause hero animation');
+    motionButton.querySelector('span').textContent = userPaused ? 'Play motion' : 'Pause motion';
+    motionButton.querySelector('path').setAttribute('d', userPaused ? 'm8 5 11 7-11 7Z' : 'M9 6v12M15 6v12');
   };
-  requestAnimationFrame(step);
+  motionButton.addEventListener('click', () => { userPaused = !userPaused; syncMotion(); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(entries => { inView = entries[0].isIntersecting; syncMotion(); }, {threshold:0.1}).observe(scene);
+  document.addEventListener('visibilitychange', syncMotion);
+  reducedMotion.addEventListener('change', syncMotion);
+  syncMotion();
 }
 
-// Observe stats bar separately for counter
-const statsBar = document.getElementById('stats');
-const statsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.querySelectorAll('[data-target]').forEach(el => animateCounter(el));
-      statsObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.3 });
-if (statsBar) statsObserver.observe(statsBar);
-
-// Hero stat counters on load
-window.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    document.querySelectorAll('.hero-visual [data-target]').forEach(el => animateCounter(el));
-  }, 600);
-});
-
-// ─── Scroll To Top ─────────────────────────
-const scrollTopBtn = document.getElementById('scroll-top');
-window.addEventListener('scroll', () => {
-  scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
-}, { passive: true });
-scrollTopBtn.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// ─── Dynamic Year ──────────────────────────
-const yearEl = document.getElementById('year');
-if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-// ─── Contact Form Validation & Submit ──────
-const form        = document.getElementById('contact-form');
-const submitBtn   = document.getElementById('submit-btn');
-const successMsg  = document.getElementById('form-success');
-
-const validators = {
-  name:     { test: v => v.trim().length >= 2, msg: 'Please enter your full name.' },
-  phone:    { test: v => /^[\d\s\(\)\-\+\.]{7,20}$/.test(v.trim()), msg: 'Please enter a valid phone number.' },
-  email:    { test: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()), msg: 'Please enter a valid email address.' },
-  service:  { test: v => v !== '', msg: 'Please select a service.' },
-  location: { test: v => v !== '', msg: 'Please select your location.' }
-};
-
-function setError(field, msg) {
-  const input = document.getElementById(field);
-  const errEl = document.getElementById(`${field}-error`);
-  if (input)  input.classList.toggle('error', !!msg);
-  if (errEl)  errEl.textContent = msg || '';
+// Service-page links carry only a known selection into the quote form.
+const quoteForm = document.querySelector('#contact-form');
+if (quoteForm) {
+  const params = new URLSearchParams(location.search);
+  for (const [query, field] of [['service', 'service'], ['city', 'location']]) {
+    const value = params.get(query);
+    const select = document.getElementById(field);
+    if (value && [...select.options].some(option => option.value === value)) select.value = value;
+  }
 }
-
-function validateField(field) {
-  const el = document.getElementById(field);
-  if (!el) return true;
-  const rule = validators[field];
-  if (rule && !rule.test(el.value)) {
-    setError(field, rule.msg);
-    return false;
-  }
-  setError(field, '');
-  return true;
-}
-
-// Live validation on blur
-Object.keys(validators).forEach(field => {
-  const el = document.getElementById(field);
-  if (el) {
-    el.addEventListener('blur', () => validateField(field));
-    el.addEventListener('input', () => {
-      if (el.classList.contains('error')) validateField(field);
-    });
-  }
-});
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  // Validate all
-  const fields = ['name', 'phone', 'email', 'service', 'location'];
-  const valid  = fields.map(f => validateField(f)).every(Boolean);
-  if (!valid) {
-    // Scroll to first error
-    const firstErr = form.querySelector('.error');
-    if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    return;
-  }
-
-  // Show loading
-  const btnText    = submitBtn.querySelector('.btn-text');
-  const btnLoading = submitBtn.querySelector('.btn-loading');
-  btnText.style.display    = 'none';
-  btnLoading.style.display = 'inline-flex';
-  submitBtn.disabled = true;
-
-  // Simulate async submission (replace with real endpoint)
-  await new Promise(r => setTimeout(r, 1800));
-
-  // Success
-  submitBtn.style.display = 'none';
-  successMsg.style.display = 'flex';
-  form.reset();
-
-  // In production, you'd POST to a real API:
-  // const data = new FormData(form);
-  // await fetch('/api/contact', { method: 'POST', body: JSON.stringify(Object.fromEntries(data)) });
-});
-
-// ─── Smooth Active Nav Highlight ───────────
-const sections = document.querySelectorAll('section[id]');
-const navItems = document.querySelectorAll('.nav-link');
-
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.getAttribute('id');
-      navItems.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-      });
-    }
-  });
-}, { threshold: 0.4 });
-
-sections.forEach(s => sectionObserver.observe(s));
-
-// Add active nav styles dynamically
-const style = document.createElement('style');
-style.textContent = `.nav-link.active { color: var(--blue-900) !important; background: var(--blue-50) !important; font-weight: 600; }`;
-document.head.appendChild(style);
-
-// ─── Service Card Hover Sparkle ───────────
-document.querySelectorAll('.service-card').forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect  = card.getBoundingClientRect();
-    const x     = ((e.clientX - rect.left) / rect.width)  * 100;
-    const y     = ((e.clientY - rect.top)  / rect.height) * 100;
-    card.style.setProperty('--mouse-x', `${x}%`);
-    card.style.setProperty('--mouse-y', `${y}%`);
-  });
-});
-
-// ─── City Card Click → Pre-fill Form ──────
-const locationSelect = document.getElementById('location');
-document.querySelectorAll('.city-card[id]').forEach(card => {
-  card.addEventListener('click', () => {
-    const map = {
-      'city-sf':           'san-francisco',
-      'city-walnut-creek': 'walnut-creek',
-      'city-lafayette':    'lafayette',
-      'city-san-ramon':    'san-ramon',
-      'city-danville':     'danville',
-      'city-other':        'other-bay-area'
-    };
-    const val = map[card.id];
-    if (val && locationSelect) {
-      locationSelect.value = val;
-      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-    }
-  });
-});
-
-// ─── Service Card Click → Pre-fill Form ───
-const serviceSelect = document.getElementById('service');
-document.querySelectorAll('.sc-link[id]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    if (!link.href.startsWith('tel:')) {
-      const map = {
-        'service-link-computer-repair': 'computer-repair',
-        'service-link-os-install':      'os-installation',
-        'service-link-virus':           'virus-removal',
-        'service-link-wifi':            'wifi-setup',
-        'service-link-printer':         'printer-setup',
-        'service-link-office':          'office-setup',
-        'service-link-smart-hands':     'smart-hands'
-      };
-      const val = map[link.id];
-      if (val && serviceSelect) serviceSelect.value = val;
-    }
-  });
-});
-
-console.log('%c🔷 Gem Infotech', 'color:#1e3a8a;font-size:1.5rem;font-weight:800;');
-console.log('%cBay Area Tech Services — ahmed@thegeminfo.com', 'color:#64748b;font-size:0.9rem;');
